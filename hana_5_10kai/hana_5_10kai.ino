@@ -8,7 +8,7 @@ int rightKP   = 13;
 int vrefKP    = 11;  
 int upTime   = 3000;
 int downTime = 1800;
-int kukiLevel = 0;
+int riseLevel = 0;
 
 void setup() {
 pinMode(leftHP, OUTPUT);
@@ -37,10 +37,17 @@ int inputchar;
     // 読み込んだデータが -1 以外の場合　以下の処理を行う
  
     switch(inputchar){
-      //茎をあげる
+      //成長
       case 'a':
         Serial.print("kuki Up\n");
-        kukiUp();
+        if(riseLevel < 2){
+          kukiUp();
+          riseLevel += 1;
+        }
+        else if(riseLevel == 2){
+          hanaOpen();
+          riseLevel += 1;
+        }
         break;
       //茎を下げる
       case 'b':  
@@ -60,7 +67,7 @@ int inputchar;
        //リセット
       case 'r':  
         Serial.print("RESET\n");
-        kukiLevel = 0;
+        riseLevel = 0;
         break;
       //緊急停止
       case 'q':  
@@ -95,14 +102,11 @@ int inputchar;
 }
 
 void kukiUp(){
-  if (kukiLevel < 2){
-    digitalWrite(rightKP, LOW);
-    digitalWrite(leftKP, HIGH);
-    delay(upTime/2);
-  }
+  digitalWrite(rightKP, LOW);
+  digitalWrite(leftKP, HIGH);
+  delay(upTime/2);
   digitalWrite(rightKP, LOW);
   digitalWrite(leftKP, LOW);
-  kukiLevel += 1;
 }
 
 void kukiDown(){
@@ -176,5 +180,10 @@ void stopAll(){
     while(1){
   delay(1000);
 }
+}
+
+void testLED(){
+  digitalWrite(13,HIGH);
+  delay(1000);
 }
 
