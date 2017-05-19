@@ -1,13 +1,13 @@
 int leftHP    = 4;
 int rightHP   = 5;
 int vrefHP    = 3;  
-int openTime   = 330;
-int closeTime  = 380;
+int openTime   = 280;
+int closeTime  = 330;
 int leftKP    = 12;
 int rightKP   = 13;
 int vrefKP    = 11;  
-int upTime   = 3000;
-int downTime = 1800;
+int upTime   = 2000;
+int downTime = 1000;
 int riseLevel = 0;
 
 void setup() {
@@ -157,7 +157,7 @@ void hanaClose(){
 void hanaOpenShort(){
   digitalWrite(rightHP, HIGH);
   digitalWrite(leftHP, LOW);
-  delay(50);
+  delay(100);
   digitalWrite(rightHP, LOW);
   digitalWrite(leftHP, LOW);
   delay(200);
@@ -166,7 +166,7 @@ void hanaOpenShort(){
 void hanaCloseShort(){
   digitalWrite(rightHP, LOW);
   digitalWrite(leftHP, HIGH);
-  delay(50);
+  delay(100);
   digitalWrite(rightHP, LOW);
   digitalWrite(leftHP, LOW);
   delay(200);
